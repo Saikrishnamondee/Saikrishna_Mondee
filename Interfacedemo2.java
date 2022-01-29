@@ -1,4 +1,5 @@
-interface planvehicle 
+
+	interface planvehicle 
 	{
 		void speed();
 		void noofwheels();
@@ -20,7 +21,7 @@ interface planvehicle
 
 	 class Truck extends fourwheeler{
 		public void nofwheels() {
-			System.out.println("Truck 8 wheels");
+			System.out.println("8 wheels");
 		}
 
 		public void speed() {
@@ -97,46 +98,48 @@ class BiCycle extends twowheeler{
 		
 	}
 		}
+class fourwheelerFactory{
+	fourwheeler getfourwheeler(String fwheeler)
+	{
+		if(fwheeler.equals("Truck"))
+			return new Truck();
+		if(fwheeler.equals("car"))
+			return new car();
+		return null;
+	}
+}
+class twowheelerFactory{
+	twowheeler gettwowheeler(String twheeler)
+	{
+		if(twheeler.equals("Bike"))
+			return new Bike();
+		if(twheeler.equals("BiCycle"))
+			return new BiCycle();
+		return null;
+	}
+}
 		
 		
 		
-		 public class Interfacedemo {
+		 public class Interfacedemo2 {
 		public static void main(String[] args) {
-		
-		System.out.println("This is Truck Details");
-		
-		Truck t =new Truck();
-		t.speed();
-		t.nofwheels();
-		t.noofGears();
-		t.vipers();
+			
+			fourwheelerFactory fwf = new fourwheelerFactory();
+			fourwheeler f = fwf.getfourwheeler("car");
+			f.speed();
+			f.noofwheels();
+			f.noofGears();
+			f.vipers();
 		System.out.println("\n");
+			
+			twowheelerFactory twf = new twowheelerFactory();
+			twowheeler tf = twf.gettwowheeler("BiCycle");
+			tf.speed();
+			tf.noofwheels();
+			tf.noofGears();
+			tf.stand();
+			
 		
-		System.out.println("This is Car Details");
-		
-		car c =new car();
-		c.speed();
-		c.noofwheels();
-		c.noofGears();
-		c.vipers();
-		
-		System.out.println("\n");
-		System.out.println("This is Bike Details");
-		Bike b = new Bike();
-		b.speed();
-		b.noofwheels();
-		b.noofGears();
-		b.stand();
-		System.out.println("\n");
-		
-		System.out.println("This is BiCycle Details");
-		
-		BiCycle bc = new BiCycle();
-		bc.speed();
-		bc.noofwheels();
-		bc.noofGears();
-		bc.stand();
-		}
 
 }
-
+		 }
