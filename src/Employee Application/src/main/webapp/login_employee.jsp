@@ -1,0 +1,29 @@
+<html>
+<body bgcolor="yellow">
+<%@ page import = "java.sql.*" %>
+<%
+Connection connection= null;
+Class.forName("com.mysql.cj.jdbc.Driver");
+String url ="jdbc:mysql://localhost:3306/mondee";
+String user ="root";
+String pass = "Meta@123";
+connection = DriverManager.getConnection(url, user, pass);
+String name =request.getParameter("username");
+String password =request.getParameter("password");
+
+String sql = "select * from employee where ename=? and password=?";			
+	PreparedStatement ps =connection.prepareStatement(sql);
+	ps.setString(1, name);
+	ps.setString(2, password);
+	
+	ResultSet rs = ps.executeQuery();
+	if (rs.next())
+		session.setAttribute("eid", rs.getInt(1));
+		response.sendRedirect("./home_employee.html");
+
+
+%>
+<h1 align="center">Login Successfully </h1>
+
+</body>
+</html>
