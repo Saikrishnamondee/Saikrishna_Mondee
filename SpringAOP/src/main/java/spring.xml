@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+<bean id="hdfc" class="com.mondee.Account"></bean>
+<bean id="auth" class="com.mondee.Authentication"></bean>
+<bean id="logobj" class="com.mondee.Loging"></bean> 
+<bean id="authlog" class="com.mondee.AuthLog"></bean>
+<bean id="pfb" class="org.springframework.aop.framework.ProxyFactoryBean">
+
+<property name="proxyInterfaces" value="com.mondee.Hdfc"></property>
+
+<property name="InterceptorNames">
+   <list>
+       <value>authlog</value>
+       
+       
+  </list>
+</property>
+
+<property name="target">
+     <ref bean="hdfc"/>
+</property>
+
+
+</bean>
+</beans>

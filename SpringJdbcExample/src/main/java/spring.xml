@@ -1,0 +1,23 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+         "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+         
+<beans>
+<bean id ="connection" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+<property name="url" value="jdbc:mysql://localhost:3306/mondee"></property>
+<property name="username" value="root"></property>
+<property name="password" value="Meta@123"></property>
+</bean>
+
+<bean id="jdbcobj" class="org.springframework.jdbc.core.JdbcTemplate">
+<constructor-arg>
+<ref bean ="connection"/>
+</constructor-arg>
+</bean>
+
+<bean id ="jtobj" class="com.mondee.SpringJdbcSelect">
+<property name="jt">
+<ref bean="jdbcobj"/>
+</property>
+</bean>
+</beans>
